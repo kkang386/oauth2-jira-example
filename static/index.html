@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Jira OAuth</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+
+  <body>
+    <div class="content unauthorized">
+      <div class="content-bottom">
+        <a class="btn" href="/auth">SIGN IN WITH JIRA</a>
+        <p class="sign-in-text">in order to get started</p>
+      </div>
+    </div>
+    <div class="content authorized" style="display: none">
+      <div class="top">
+        <h1><span class="party-popper">🎉</span><br />Awesome!<br />You're authorized 🔒</h1>
+      </div>
+    </div>
+    <script type="text/javascript" src="main.js"></script>
+  </body>
+</html>

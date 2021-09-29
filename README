@@ -1,0 +1,18 @@
+This is nodejs express server for dev test OAuth2 authorization with atlassian service, such as Jira.
+
+To start
+1) create an app with client_id and client_secret on https://developer.atlassian.com/console
+
+2) copy .env.sample to .env and update the client_id and client_secret into the .env file
+
+3) make sure your callback url is accessible from the Internet. If you will run this server on localhost,
+you may want to install and setup ngrok for localhost port 3000 first, and update .env file HOST_NAME with
+your public hostname.
+
+4) run this to install the nodejs packages:
+   npm i
+
+5) start the server:
+   node index.js
+
+6) open a web browser on to the url of your HOST_NAME entry setup in the .env file.
