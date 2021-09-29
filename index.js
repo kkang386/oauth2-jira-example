@@ -83,12 +83,3 @@ app.listen(3000);
 // eslint-disable-next-line no-console
 console.log('App listening on port 3000');
 console.log("Running on host:" + process.env.HOST_NAME);
-
-/*
-Use this URL to install your 3LO app.
-
-Jira Service Desk API authorization URL
-https://auth.atlassian.com/authorize?audience=api.atlassian.com&client_id=iTXiZZRH7ToMs9UvTWDCnGUSUPFwW9Nf&scope=read%3Aservicedesk-request&redirect_uri=http%3A%2F%2Flocalhost%3A3000&state=${YOUR_USER_BOUND_VALUE}&response_type=code&prompt=consent
-
-https://auth.atlassian.com/authorize?audience=api.atlassian.com&client_id=iTXiZZRH7ToMs9UvTWDCnGUSUPFwW9Nf&scope=read%3Ame%20read%3Aaccount&redirect_uri=https%3A%2F%2F3c39-107-184-70-223.ngrok.io%2Foauth-callback&state=${YOUR_USER_BOUND_VALUE}&response_type=code&prompt=consent
-*/
