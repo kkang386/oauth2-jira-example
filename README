@@ -5,9 +5,7 @@ To start
 
 2) copy .env.sample to .env and update the client_id and client_secret into the .env file
 
-3) make sure your callback url is accessible from the Internet. If you will run this server on localhost,
-you may want to install and setup ngrok for localhost port 3000 first, and update .env file HOST_NAME with
-your public hostname.
+3) make sure your callback url is accessible from the Internet. If you will run this server on localhost, you may want to install and setup ngrok for localhost port 3000 first, and update .env file HOST_NAME with your public hostname.
 
 4) run this to install the nodejs packages:
    npm i
@@ -16,3 +14,9 @@ your public hostname.
    node index.js
 
 6) open a web browser on to the url of your HOST_NAME entry setup in the .env file.
+
+References:
+
+    https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps/#accesstoken
+
+    https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps/#faq1

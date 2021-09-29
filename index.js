@@ -47,11 +47,12 @@ app.get('/oauth-callback', ({ query: { code } }, res) => {
   
   axios
     .post('https://auth.atlassian.com/oauth/token', body, opts)
-    .then((_res) => _res.data.access_token)
-    .then((token) => {
+    .then((_res) => {
+        var token = _res.data.access_token
         console.log("\n in /oauth-callback, GET Token");
-        console.log('Received token:', token);
-
+        console.log("response data: ");
+        console.log(_res.data);
+        
       res.redirect(`/accessible-resources?token=${token}`);
     })
     .catch((err) => res.status(500).json({ err: err.message }));
