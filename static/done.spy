@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Jira OAuth2</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+
+  <body>
+    <div class="content">
+      <div class="content-bottom">
+        <p class="sign-in-text">Atlassian OAuth2 test completed successfully.</p>
+      </div>
+      <div class="content">
+          <span>Continue to load the service with:</span>
+          <form action="/appstart" method="post">
+            <textarea name='payload' rows="10" cols="100">{{ data }}</textarea>
+            <br>
+            <input name='token' type='hidden' value="{{token}}">
+            <input type="submit" name="submit" value="Query the service"><p>&nbsp;</p>
+            <input type="submit" name="submit" value="Refresh token">
+          </form>
+      </div>      
+      <div class="content-bottom">
+        <P>
+        <a class="btn" href="/">Try an oauth2 service again</a>
+        </P>
+      </div>
+    </div>
+  </body>
+</html>

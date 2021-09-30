@@ -4,20 +4,25 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Jira OAuth</title>
+    <title>Jira OAuth2</title>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
 
   <body>
-    <div class="content unauthorized">
+    <div class="content">
       <div class="content-bottom">
         <p class="sign-in-text">Atlassian OAuth2 test completed successfully.</p>
-        <a class="btn" href="/">Try it again</a>
       </div>
-    </div>
-    <div class="content authorized" style="display: none">
-      <div class="top">
-        <h1><span class="party-popper">🎉</span><br />Awesome!<br />You're authorized 🔒</h1>
+      <div class="content">
+          <span>Continue to load the service with:</span>
+          <Pre>
+            {{ data }}
+          </Pre>
+      </div>      
+      <div class="content-bottom">
+        <P>
+        <a class="btn" href="/">Try an oauth2 service again</a>
+        </P>
       </div>
     </div>
   </body>

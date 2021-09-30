@@ -11,7 +11,12 @@
   <body>
     <div class="content unauthorized">
       <div class="content-bottom">
-        <a class="btn" href="/auth">SIGN IN WITH JIRA</a>
+        <ul>
+            <li><a class="btn" href="/auth?action=user_id_api">User Identity API</a></li>
+            <li><a class="btn" href="/auth?action=confluence_api">Confluence API</a></li>
+            <li><a class="btn" href="/auth?action=jira_svc_desk_api">Jira Service Desk API JIRA</a></li>
+            <li><a class="btn" href="/auth?action=jira_platform_rest_api">JIRA Platform REST API</a></li>    
+        </ul>
         <p class="sign-in-text">in order to get started</p>
       </div>
     </div>
@@ -20,6 +25,5 @@
         <h1><span class="party-popper">🎉</span><br />Awesome!<br />You're authorized 🔒</h1>
       </div>
     </div>
-    <script type="text/javascript" src="main.js"></script>
   </body>
 </html>
