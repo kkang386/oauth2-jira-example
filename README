@@ -1,13 +1,12 @@
-This is nodejs express server for dev test OAuth2 authorization with atlassian service, such as Jira.
+This is nodejs express server for dev test OAuth2 authorization with atlassian service, such as Jira. Since is for dev test, the styling in this app is very basic.
 
 To start
-1) create an app with client_id and client_secret on https://developer.atlassian.com/console
+1) create an app with CLIENT_ID and CLIENT_SECRET on https://developer.atlassian.com/console
 
-2) copy .env.sample to .env and update the client_id and client_secret into the .env file
- Also write down the ATLASSIAN_SITE_NAME name if you want to test run service calls after receive the token, such as query Jira api. It should be your atlassian instance name.
+2) make sure your callback url is accessible from the Internet. If you will run this server on localhost, you may want to install and setup ngrok for localhost port 3000 first, and update .env file HOST_NAME with your public hostname.
 
-
-3) make sure your callback url is accessible from the Internet. If you will run this server on localhost, you may want to install and setup ngrok for localhost port 3000 first, and update .env file HOST_NAME with your public hostname.
+3) copy .env.sample to .env and update the CLIENT_ID and CLIENT_SECRET into the .env file
+ Also setup ATLASSIAN_SITE_NAME name if you want to test run service calls after receive the token, such as query Jira api. It should be your atlassian instance name.
 
 4) run this to install the nodejs packages:
    npm i
@@ -17,6 +16,19 @@ To start
 
 6) open a web browser on to the url of your HOST_NAME entry setup in the .env file.
 
+Description of the additional parameters in .env file:
+
+    HOST_NAME: this has to be https host that's visible online. If the port is not 80, it needs to be specified too. It has to be the host where the callback url is based of. A callback url should be in the format of: HOST_NAME/oauth-callback
+        example hostname: https://4e69-107-184-70-223.ngrok.io
+        example callback url to placed in developer console: 
+            https://4e69-107-184-70-223.ngrok.io/oauth-callback
+
+    ATLASSIAN_SITE_NAME: wobojason
+
+    MY_BOUND_VALUE=a_cross_atlassian_site_key_or_authflow_state_value_defined_by_my_app
+
+    GET_REFRESH_TOKEN: set to 1 to get refresh token.
+    
 References:
 
     https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps/#accesstoken

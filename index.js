@@ -23,32 +23,33 @@ app.get('/', (req, res) => {
 
 app.get('/auth', (req, res) => {
     var action = req.query.action;
+    var get_referesh_token = (process.env.GET_REFRESH_TOKEN == 1)? "offline_access ": "";
     res.cookie('action', action, { maxAge: 900000, httpOnly: true });
     
-    var scope= "";
+    var scope= (process.env.GET_REFRESH_TOKEN == 1)? "offline_access ": "";
     console.log("\n in /auth, starting get code");
     console.log('action:' + action);
     switch(action) {
         case "user_id_api":
-            scope = "read:me read:account";
+            scope += "read:me read:account";
             break;
         case "confluence_api":
-            scope = "read:confluence-content.summary write:confluence-content read:confluence-space.summary write:confluence-space write:confluence-file read:confluence-props manage:confluence-configuration read:confluence-content.all write:confluence-props search:confluence read:confluence-content.permission read:confluence-groups write:confluence-groups readonly:content.attachment:confluence read:confluence-user";
+            scope += "read:confluence-content.summary write:confluence-content read:confluence-space.summary write:confluence-space write:confluence-file read:confluence-props manage:confluence-configuration read:confluence-content.all write:confluence-props search:confluence read:confluence-content.permission read:confluence-groups write:confluence-groups readonly:content.attachment:confluence read:confluence-user";
         case "jira_svc_desk_api":
-            scope = "read:servicedesk-request manage:servicedesk-customer write:servicedesk-request read:servicemanagement-insight-objects";
+            scope += "read:servicedesk-request manage:servicedesk-customer write:servicedesk-request read:servicemanagement-insight-objects";
             break;
         case "jira_platform_rest_api":
-            scope = "read:jira-user read:jira-work write:jira-work";
+            scope += "read:jira-user read:jira-work write:jira-work";
     }
-    var url2="https://auth.atlassian.com/authorize?audience=api.atlassian.com&client_id="+ 
+    var url="https://auth.atlassian.com/authorize?audience=api.atlassian.com&client_id="+ 
         process.env.CLIENT_ID +
         "&scope="+ encodeURIComponent(scope) +
         "&redirect_uri=" + encodeURIComponent(process.env.HOST_NAME) + "/oauth-callback" + 
         "&state=" +  encodeURIComponent(process.env.MY_BOUND_VALUE) +
         "&response_type=code&prompt=consent"
-        console.log("url2: " + url2);
+        console.log("url: " + url);
     res.redirect(
-      `${url2}`
+      `${url}`
     );
   });
   
@@ -71,7 +72,10 @@ app.get('/oauth-callback', ({ query: { code } }, res) => {
   axios
     .post('https://auth.atlassian.com/oauth/token', body, opts)
     .then((_res) => {
-        var token = _res.data.access_token
+        var token = _res.data.access_token;
+        var refresh_token = (_res.data.refresh_token)? _res.data.refresh_token : "";
+        res.cookie('refresh_token', refresh_token, { maxAge: 900000, httpOnly: true });
+
         console.log("\n in /oauth-callback, GET Token");
         console.log("response data: ");
         console.log(_res.data);
@@ -169,11 +173,12 @@ app.post('/appstart', (req, res) => {
                 .catch((err) => res.status(500).json({ err: err.message }));
             break;
         case 'refresh-token':
+            var refresh_token = req.cookies['refresh_token'];
             const body = {
                 'grant_type': 'refresh_token',
                 'client_id': process.env.CLIENT_ID,
                 'client_secret': process.env.CLIENT_SECRET,
-                'refresh_token': token
+                'refresh_token': refresh_token
             };
             const opts2 = { headers: { accept: 'application/json', 'Content-Type': 'application/json' } };
             console.log("body:");
@@ -188,9 +193,12 @@ app.post('/appstart', (req, res) => {
                     console.log("response data: ");
                     console.log(_res.data);
                     
-                    res.redirect(`/accessible-resources?token=${refresh_token}`);
+                    res.redirect(`/accessible-resources?token=${access_token}`);
                 })
-                .catch((err) => res.status(500).json({ err: err.message }));
+                .catch((err) => {
+                    console.log(err.response.data);
+                    res.status(err.response.status).json(err.response.data);
+                });
 
     }
     //res.sendFile(path.join(__dirname, '/static/done.html'));
