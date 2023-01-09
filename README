@@ -23,7 +23,7 @@ Description of the additional parameters in .env file:
         example callback url to placed in developer console: 
             https://4e69-107-184-70-223.ngrok.io/oauth-callback
 
-    ATLASSIAN_SITE_NAME: wobojason
+    ATLASSIAN_SITE_NAME: kktest 
 
     MY_BOUND_VALUE=a_cross_atlassian_site_key_or_authflow_state_value_defined_by_my_app
 
