@@ -1,4 +1,5 @@
-This is nodejs express server for dev test OAuth2 authorization with atlassian service, such as Jira. Since is for dev test, the styling in this app is very basic.
+This is a complete working example for showing how to implement OAuth2 authentication with a service, in this case Atlassian's Oauth2 service.
+
 
 To start
 1) create an app with CLIENT_ID and CLIENT_SECRET on https://developer.atlassian.com/console
