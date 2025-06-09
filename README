@@ -4,7 +4,7 @@ This is a complete working example for showing how to implement OAuth2 authentic
 To start
 1) create an app with CLIENT_ID and CLIENT_SECRET on https://developer.atlassian.com/console
 
-2) make sure your callback url is accessible from the Internet. If you will run this server on localhost, you may want to install and setup ngrok for localhost port 3000 first, and update .env file HOST_NAME with your public hostname.
+2) make sure your callback url is accessible from the Internet. If you will run this server on localhost, you may want to install and setup a tunneling service, e.g. ngrok, for localhost port 3000 first, and update .env file HOST_NAME with your public hostname.
 
 3) copy .env.sample to .env and update the CLIENT_ID and CLIENT_SECRET into the .env file
  Also setup ATLASSIAN_SITE_NAME name if you want to test run service calls after receive the token, such as query Jira api. It should be your atlassian instance name.
